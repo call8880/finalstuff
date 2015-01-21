@@ -8,7 +8,6 @@ public class LinkedPriorityQueue implements PriorityQueue{
 	//private ArrayList<Integer> thing[];
 	ArrayList<Patient> thing[];
 	private int size;
-	int i;
 	
 	public LinkedPriorityQueue(int s){
 		System.out.println("size for array" + s);
@@ -20,31 +19,42 @@ public class LinkedPriorityQueue implements PriorityQueue{
 		}
 	}	
 	
-	public Object dequeue(int i){
-		if (hasData() == false){
-			throw new IllegalStateException
-				("Queue is empty");
+	public Object dequeue(){
+//		if (hasData() == false){
+//			throw new IllegalStateException
+//				("Queue is empty");
+//		}
+		
+		if (queueSize(0) > 0){
+			return thing[0].remove(0);
 		}
-		return thing[i].remove(0);
+		else if (queueSize(1) > 0){
+			return thing[1].remove(0);
+		}
+		else return thing[2].remove(0);
 	}
 	
 
 	public void enqueue(Object o){
 		throw new IllegalStateException("must Give a Priority");
 	}
+	
 	public void enqueue(Patient o, int i){
 		thing[i].add(o);
-		System.out.println(i);
+		System.out.println((Patient)thing[i].get(0));
 	}
+	
 	public int size(){
 		return thing.length;
 	}
+	
 	public int queueSize(int i){
 		return thing[i].size();
 	}
+	
 	public boolean hasData(){
 		for(int x = 0; x < size; x++){
-			if(queueSize(i) > 0){
+			if(queueSize(x) > 0){
 				return true;
 			}
 		}

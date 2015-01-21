@@ -28,7 +28,7 @@ public class Patient {
 	public String toString() {
 		String str = name + " ";
 		str += condition + " ";
-		str += treat + "\n";
+		str += Treated() +  "\n";
 		return str;
 	}
 	

@@ -9,13 +9,13 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
-public class EmergencyRoom extends JFrame implements Queue{
+public class EmergencyRoom extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField txtname;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	Patient p;
-	JTextArea txtpatients;
+	JScrollPane txtpatients;
 	String option = "";
 	LinkedPriorityQueue q;
 	int value = 10;
@@ -41,7 +41,7 @@ public class EmergencyRoom extends JFrame implements Queue{
 	 */
 	public EmergencyRoom() {
 		
-		q = new LinkedPriorityQueue(value);
+		q = new LinkedPriorityQueue(3);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 260, 300);
@@ -89,7 +89,7 @@ public class EmergencyRoom extends JFrame implements Queue{
 				boolean treated = false;
 				p = new Patient(nm, option, treated);
 				String str = p.toString();
-				txtpatients.append(str);
+				txtpatients.setToolTipText(str);
 				int priority = -1;
 
 				if(btncritical.isSelected()) priority = 0;
@@ -108,42 +108,9 @@ public class EmergencyRoom extends JFrame implements Queue{
 		btnTreatNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				for(int x = 0; x < q.size(); x++){
-					System.out.println(q.queueSize(x));
-					if (q.queueSize(x) > 0){
-						q.dequeue(x);
-					}
-				}
-				
-//				for(int x = 0; x < q.queueSize(); x++){
-//					if (p.priority() == "Critical"){
-//						q.dequeue(x);
-//						p.isTreated(true);
-//						txtpatients.append(p.toString());
-//						break;
-//					}
-//					else if (p.priority() == "Serious"){
-//						q.dequeue(x);
-//						p.isTreated(true);
-//						txtpatients.append(p.toString());
-//						break;
-//					}
-//					else if(p.priority() == "fair"){
-//						q.dequeue(x);
-//						p.isTreated(true);
-//						txtpatients.append(p.toString());
-//						break;
-//					}
-//					else throw new IllegalStateException
-//					("Queue is empty");
-//				}
-//				
-				System.out.println(q.size());
-				System.out.println(q.hasData() + "this time");
-				//q.dequeue(0);
+				p = (Patient) q.dequeue();
 				p.isTreated(true);
 				txtpatients.append(p.toString());
-				//q.remove(p);
 				
 			}
 		});
@@ -153,50 +120,19 @@ public class EmergencyRoom extends JFrame implements Queue{
 		JButton btnTreatAll = new JButton("Treat All");
 		btnTreatAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				for(int x = 0; x < q.size(); x++){
-					if (p.priority() == "critical"){
-						q.dequeue(x);
-					}
-					if (p.priority() == "serious"){
-						q.dequeue(x);
-					}
-					if (p.priority() == "fair"){
-						q.dequeue(x);
-					}
-				}
 				
-			}
+			}	
 		});
 		btnTreatAll.setBounds(121, 131, 89, 23);
 		contentPane.add(btnTreatAll);
 		
-		txtpatients = new JTextArea();
+		txtpatients = new JScrollPane();
 		txtpatients.setEditable(false);
 		txtpatients.setBounds(10, 159, 211, 91);
 		contentPane.add(txtpatients);
+
 		
-	}
-
-	public Object peekFront() {
-		
-		return null;
-	}
-
-	@Override
-	public Object dequeue() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void enqueue(Object o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }
+
+	
