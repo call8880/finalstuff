@@ -15,7 +15,7 @@ public class EmergencyRoom extends JFrame{
 	private JTextField txtname;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	Patient p;
-	JScrollPane txtpatients;
+	JTextArea txtpatients;
 	String option = "";
 	LinkedPriorityQueue q;
 	int value = 10;
@@ -89,14 +89,13 @@ public class EmergencyRoom extends JFrame{
 				boolean treated = false;
 				p = new Patient(nm, option, treated);
 				String str = p.toString();
-				txtpatients.setToolTipText(str);
+				txtpatients.append(str);
 				int priority = -1;
-
 				if(btncritical.isSelected()) priority = 0;
 				if(btnserious.isSelected()) priority = 1;
 				if(btnfair.isSelected()) priority = 2;
 				q.enqueue(p, priority);
-				System.out.println(q.hasData());
+				
 				
 			}
 
@@ -121,16 +120,17 @@ public class EmergencyRoom extends JFrame{
 		btnTreatAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				
+				
 			}	
 		});
 		btnTreatAll.setBounds(121, 131, 89, 23);
 		contentPane.add(btnTreatAll);
 		
-		txtpatients = new JScrollPane();
+		txtpatients = new JTextArea();
 		txtpatients.setEditable(false);
 		txtpatients.setBounds(10, 159, 211, 91);
 		contentPane.add(txtpatients);
-
 		
 	}
 }
