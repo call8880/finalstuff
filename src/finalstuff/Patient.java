@@ -19,6 +19,10 @@ public class Patient {
 	
 	public void isTreated(boolean t){
 		treated = t;
+		Treated();
+	}
+	public String priority(){
+		return condition;
 	}
 	
 	public String toString() {

@@ -5,6 +5,6 @@ import java.util.Queue;
 
 public interface PriorityQueue extends Queue{
 	
-	public void enqueue(Object obj, int prioirity);
+	public void enqueue(Patient obj, int prioirity);
 
 }
