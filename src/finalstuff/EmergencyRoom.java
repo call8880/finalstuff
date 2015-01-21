@@ -120,7 +120,8 @@ public class EmergencyRoom extends JFrame{
 		btnTreatAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				
+				q.dequeueAll();
+				txtpatients.setText("All patients treated");
 				
 			}	
 		});

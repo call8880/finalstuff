@@ -39,6 +39,13 @@ public class LinkedPriorityQueue{
 		}
 		
 	}
+	public void dequeueAll(){
+		while(hasData() == true){
+			for (int x = 0; x < thing.length; x++){
+				thing[x].remove(x);
+			}
+		}
+	}
 	
 
 	public void enqueue(Object o){
